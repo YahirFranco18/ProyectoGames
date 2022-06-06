@@ -26,18 +26,21 @@ public class Metodos {
     public void guardar(Juego juego1){
         vprincipal.addElement(juego1);
     }
-    //procedimiento del txt
+    //procedimiento del csv
     public void guardarArchivo(Juego juego1){
         try{
-            FileWriter fw=new FileWriter("Juego.txt",true);
+            FileWriter fw=new FileWriter("Juego.csv",true);
+            
             BufferedWriter bw=new BufferedWriter(fw);
             PrintWriter pw=new PrintWriter(bw);
-            pw.print(juego1.getNombre());
-            pw.print("--"+juego1.getDesarrolladora());
-            pw.print("--"+juego1.getAno());
-            pw.print("--"+juego1.getGenero());
-            pw.print("--"+juego1.getClasificacion());
-            pw.print("--"+juego1.getPlataforma()+"\n");
+            //pw.print("nombre"+","+"desarrolladora"+","+"año"+","+"vendidos"+","+"genero"+","+"clasificacion"+","+"plataforma");
+            pw.print(juego1.getNombre());                                    
+            pw.print(","+juego1.getDesarrolladora());
+            pw.print(","+juego1.getAno());
+            pw.print(","+juego1.getVendidos());
+            pw.print(","+juego1.getGenero());
+            pw.print(","+juego1.getClasificacion());
+            pw.print(","+juego1.getPlataforma()+"\n");
             pw.close();
         }catch(Exception e){
         JOptionPane.showMessageDialog(null, e);
@@ -48,8 +51,9 @@ public class Metodos {
     public DefaultTableModel listaJuegos(){
         Vector paneles=new Vector();
         paneles.addElement("Nombre");
-        paneles.addElement("Desarrolladora");
+        paneles.addElement("Desarrolladora");        
         paneles.addElement("año");
+        paneles.addElement("Vendidos");
         paneles.addElement("Genero");
         paneles.addElement("Clasificacion");
         paneles.addElement("Plataforma");
@@ -58,12 +62,12 @@ public class Metodos {
         DefaultTableModel mdlTabla=new DefaultTableModel(paneles,0);
         
         try{
-            FileReader fr=new FileReader("Juego.txt");
+            FileReader fr=new FileReader("Juego.csv");
             BufferedReader br=new BufferedReader(fr);
             
             String d;
             while((d=br.readLine())!=null){
-                StringTokenizer dato = new StringTokenizer(d,"--");
+                StringTokenizer dato = new StringTokenizer(d,",");
                 Vector x=new Vector();
                 while(dato.hasMoreTokens()){
                     x.addElement(dato.nextToken());
@@ -82,6 +86,7 @@ public class Metodos {
        genero.addItem("DISPAROS");
        genero.addItem("DEPORTES");
        genero.addItem("ESTRATEGIA");
+       genero.addItem("MOBA");
    }
    public void cboClasificacion(JComboBox clasificacion){
        clasificacion.removeAllItems();
@@ -96,6 +101,7 @@ public class Metodos {
        plataforma.addItem("PlayStation");
        plataforma.addItem("de PC");
        plataforma.addItem("Nintendo");
+       plataforma.addItem("multiplataforma");
    }
        
    

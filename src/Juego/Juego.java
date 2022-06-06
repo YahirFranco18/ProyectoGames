@@ -9,6 +9,7 @@ public class Juego {
     private String nombre;
     private String ano;
     private String desarrolladora;
+    private String vendidos;
     private String clasificacion;
     private String genero;
     private String plataforma;
@@ -18,15 +19,26 @@ public class Juego {
     
     
 
-    public Juego(String nombre, String ano, String desarrolladora, String clasificacion, String genero, String plataforma) {
+    public Juego(String nombre, String ano, String desarrolladora, String clasificacion,String vendidos, String genero, String plataforma) {
         this.nombre = nombre;
         this.ano = ano;
         this.desarrolladora = desarrolladora;
         this.clasificacion = clasificacion;
         this.genero = genero;
         this.plataforma = plataforma;
+        this.vendidos=vendidos;
     }
 
+    public String getVendidos() {
+        return vendidos;
+    }
+
+    public void setVendidos(String vendidos) {
+        this.vendidos = vendidos;
+    }
+    
+    
+    
     public String getNombre() {
         return nombre;
     }
